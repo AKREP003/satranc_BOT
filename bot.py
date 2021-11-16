@@ -1,5 +1,5 @@
 import random
-
+import threading
 dost = {"piyon" : "a",
 "kale" : "b",
 "at" : "c",
@@ -441,35 +441,25 @@ def planlama_dost(masa,layer):
 
     elementler = []
 
-    for i in masa.keys():
-
-        x = i[0]
-        y = i[1]
-
-
-
+    def kal(x, y, i):
         if masa[i] == dost["kale"]:
-
-            liste = kale_f(x, y,True)
-
+            nonlocal order
+            liste = kale_f(x, y, True)
 
             for j in liste:
-
                 m = masa.copy()
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["kale"]
 
-                move = [f"{layer}-{order}",True,m,f"kale>{j}"]
+                move = [f"{layer}-{order}", True, m, f"kale>{j}"]
                 elementler.append(move)
-                order = order + 1
+                order =+ 1
 
-
-
+    def fi(x, y, i):
         if masa[i] == dost["fil"]:
-
-
-            liste = fil_f(x, y,True)
+            nonlocal order
+            liste = fil_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -479,12 +469,12 @@ def planlama_dost(masa,layer):
 
                 move = [f"{layer}-{order}", True, m, f"fil>{j}"]
                 elementler.append(move)
-                order = order + 1
+                order =+ 1
 
+    def att(x, y, i):
         if masa[i] == dost["at"]:
-
-
-            liste = at_f(x, y,True)
+            nonlocal order
+            liste = at_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -494,11 +484,12 @@ def planlama_dost(masa,layer):
 
                 move = [f"{layer}-{order}", True, m, f"at>{j}"]
                 elementler.append(move)
-                order = order + 1
+                order =+ 1
+
+    def piyo(x, y, i):
 
         if masa[i] == dost["piyon"]:
-
-
+            nonlocal order
             liste = piyon_f(x, y, True)
 
             for j in liste:
@@ -509,10 +500,12 @@ def planlama_dost(masa,layer):
 
                 move = [f"{layer}-{order}", True, m, f"piyon>{j}"]
                 elementler.append(move)
-                order = order + 1
+                order =+ 1
 
+    def vez(x, y, i):
         if masa[i] == dost["vezir"]:
-            liste = vezir_f(x, y,True)
+            nonlocal order
+            liste = vezir_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -522,13 +515,12 @@ def planlama_dost(masa,layer):
 
                 move = [f"{layer}-{order}", True, m, f"vezir>{j}"]
                 elementler.append(move)
-                order = order + 1
+                order =+ 1
 
-
-
+    def sa(x, y, i):
         if masa[i] == dost["sah"]:
-
-            liste = sah_f(x, y,True)
+            nonlocal order
+            liste = sah_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -538,7 +530,39 @@ def planlama_dost(masa,layer):
 
                 move = [f"{layer}-{order}", True, m, f"sah>{j}"]
                 elementler.append(move)
-                order = order + 1
+                order =+ 1
+    for i in masa.keys():
+
+        x = i[0]
+        y = i[1]
+
+        ka = threading.Thread(target=kal,args=[x,y,i])
+        fii = threading.Thread(target=fi, args=[x, y, i])
+        attt = threading.Thread(target=att, args=[x, y, i])
+        pi = threading.Thread(target=piyo, args=[x, y, i])
+        ve = threading.Thread(target=vez, args=[x, y, i])
+        saa = threading.Thread(target=sa, args=[x, y, i])
+
+        ka.start()
+
+        fii.start()
+
+        attt.start()
+
+        pi.start()
+
+        ve.start()
+
+        saa.start()
+
+
+        ka.join()
+        fii.join()
+        attt.join()
+        pi.join()
+        ve.join()
+        saa.join()
+
 
     return elementler
 
@@ -547,35 +571,25 @@ def planlama_dusman(masa,layer):
 
     elementler = []
 
-    for i in masa.keys():
-
-        x = i[0]
-        y = i[1]
-
-
-
+    def kal(x, y, i):
         if masa[i] == dusman["kale"]:
-
-            liste = kale_f(x, y,False)
-
+            nonlocal order
+            liste = kale_f(x, y, False)
 
             for j in liste:
-
                 m = masa.copy()
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["kale"]
 
-                move = [f"{layer}-d{order}",False,m,f"d_kale>{j}"]
+                move = [f"{layer}-d{order}", False, m, f"d_kale>{j}"]
                 elementler.append(move)
                 order = order + 1
 
-
-
+    def fi(x, y, i):
         if masa[i] == dusman["fil"]:
-
-
-            liste = fil_f(x, y,False)
+            nonlocal order
+            liste = fil_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -587,10 +601,10 @@ def planlama_dusman(masa,layer):
                 elementler.append(move)
                 order = order + 1
 
+    def att(x, y, i):
         if masa[i] == dusman["at"]:
-
-
-            liste = at_f(x, y,False)
+            nonlocal order
+            liste = at_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -602,9 +616,9 @@ def planlama_dusman(masa,layer):
                 elementler.append(move)
                 order = order + 1
 
+    def piyo(x, y, i):
         if masa[i] == dusman["piyon"]:
-
-
+            nonlocal order
             liste = piyon_f(x, y, False)
 
             for j in liste:
@@ -617,8 +631,10 @@ def planlama_dusman(masa,layer):
                 elementler.append(move)
                 order = order + 1
 
+    def vez(x, y, i):
         if masa[i] == dusman["vezir"]:
-            liste = vezir_f(x, y,False)
+            nonlocal order
+            liste = vezir_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -630,11 +646,10 @@ def planlama_dusman(masa,layer):
                 elementler.append(move)
                 order = order + 1
 
-
-
+    def sa(x, y, i):
         if masa[i] == dusman["sah"]:
-
-            liste = sah_f(x, y,False)
+            nonlocal order
+            liste = sah_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -645,6 +660,38 @@ def planlama_dusman(masa,layer):
                 move = [f"{layer}-d{order}", False, m, f"d_sah>{j}"]
                 elementler.append(move)
                 order = order + 1
+
+
+    for i in masa.keys():
+
+        x = i[0]
+        y = i[1]
+
+        ka = threading.Thread(target=kal, args=[x, y, i])
+        fii = threading.Thread(target=fi, args=[x, y, i])
+        attt = threading.Thread(target=att, args=[x, y, i])
+        pi = threading.Thread(target=piyo, args=[x, y, i])
+        ve = threading.Thread(target=vez, args=[x, y, i])
+        saa = threading.Thread(target=sa, args=[x, y, i])
+
+        ka.start()
+
+        fii.start()
+
+        attt.start()
+
+        pi.start()
+
+        ve.start()
+
+        saa.start()
+
+        ka.join()
+        fii.join()
+        attt.join()
+        pi.join()
+        ve.join()
+        saa.join()
 
     return elementler
 
@@ -801,8 +848,6 @@ def main(pozisyonlar):
                     t = new_hamle_dost(w)
                     po = len(t)
 
-
-
                     ayikla(yalnis,po)
 
                     z = False
@@ -868,6 +913,7 @@ def main(pozisyonlar):
 
 
     def next_f(x,y):
+
         next_play = random.randint(1, y)
         cor = f"{x}-{next_play}"
         return cor
