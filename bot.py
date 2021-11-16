@@ -19,8 +19,14 @@ def Convert(string):
     list1[:0]=string
     return list1
 
-def kale_f(x,y):
+def kale_f(x,y,taraf):
 
+    if taraf:
+        do = dost
+        du = dusman
+    else:
+        do = dusman
+        du = dost
     secenekler = []
 
     x = int(x)
@@ -35,13 +41,13 @@ def kale_f(x,y):
         bati = bati - 1
         kare = str(bati) + str(y)
 
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
 
@@ -49,12 +55,12 @@ def kale_f(x,y):
         dogu = dogu + 1
         kare = str(dogu) + str(y)
 
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while kuzey > 1:
@@ -62,25 +68,25 @@ def kale_f(x,y):
         kuzey = kuzey - 1
         kare = str(x) + str(kuzey)
 
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
 
     while guney < 8:
         guney = guney + 1
         kare =   str(x) + str(guney)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
 
@@ -88,7 +94,17 @@ def kale_f(x,y):
 
     return secenekler
 
-def fil_f(x,y):
+def fil_f(x,y,taraf):
+
+    if taraf:
+        do = dost
+        du = dusman
+    else:
+        do = dusman
+        du = dost
+
+
+
     secenekler = []
 
     x = int(x)
@@ -110,57 +126,62 @@ def fil_f(x,y):
         sag_alt_x = sag_alt_x + 1
         sag_alt_y = sag_alt_y + 1
         kare = str(sag_alt_x)+str(sag_alt_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while sag_ust_x < 8 and sag_ust_y > 1:
         sag_ust_x = sag_ust_x + 1
         sag_ust_y = sag_ust_y - 1
         kare = str(sag_ust_x)+str(sag_ust_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while sol_alt_x > 1 and sol_alt_y < 8:
         sol_alt_x = sol_alt_x - 1
         sol_alt_y = sol_alt_y + 1
         kare = str(sol_alt_x)+str(sol_alt_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while sol_ust_x > 1 and sol_ust_y > 1:
         sol_ust_x = sol_ust_x - 1
         sol_ust_y = sol_ust_y - 1
         kare = str(sol_ust_x)+str(sol_ust_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     return secenekler
 
-def at_f(x,y):
+def at_f(x,y,taraf):
+    if taraf:
+        do = dost
+
+    else:
+        do = dusman
 
     liste = []
     x = int(x)
@@ -191,7 +212,7 @@ def at_f(x,y):
             f.append(i)
         else:
 
-            if masa[i] in dost.values() :
+            if masa[i] in do.values() :
 
                 f.append(i)
 
@@ -211,10 +232,12 @@ def piyon_f(x,y,taraf):
 
     if taraf:
         kare = str(x) + str(y - 1)
-        if (masa[kare] in masa.keys()) and masa[kare] not in dusman.values() and masa[kare] not in dost.values():
+
+        if (kare in masa.keys()) and (masa[kare] not in dusman.values()) and (masa[kare] not in dost.values()):
             secenekler.append(kare)
+
             kare = str(x) + str(y - 2)
-            if masa[kare] not in dusman.values() and masa[kare] not in dost.values() and y == 2:
+            if masa[kare] not in dusman.values() and masa[kare] not in dost.values() and y == 7:
                 secenekler.append(kare)
 
         kare = [str(x + 1) + str(y - 1), str(x - 1) + str(y - 1)]
@@ -230,10 +253,11 @@ def piyon_f(x,y,taraf):
     else:
         kare = str(x) + str(y + 1)
 
-        if (masa[kare] in masa.keys()) and masa[kare] not in dost.values() and masa[kare] not in dusman.values():
+        if (kare in masa.keys()) and masa[kare] not in dost.values() and masa[kare] not in dusman.values():
             secenekler.append(kare)
-            kare = str(x) + str(y - 2)
-            if (masa[kare] not in dost.values()) and (masa[kare] not in dusman.values()) and y == 7:
+            kare = str(x) + str(y + 2)
+
+            if (masa[kare] not in dost.values()) and (masa[kare] not in dusman.values()) and y == 2:
                 secenekler.append(kare)
 
         kare = [str(x + 1) + str(y + 1), str(x - 1) + str(y + 1)]
@@ -245,7 +269,14 @@ def piyon_f(x,y,taraf):
 
     return secenekler
 
-def vezir_f(x,y):
+def vezir_f(x,y,taraf):
+    if taraf:
+        do = dost
+        du = dusman
+    else:
+        do = dusman
+        du = dost
+
     secenekler = []
 
     x = int(x)
@@ -261,24 +292,24 @@ def vezir_f(x,y):
         bati = bati - 1
         kare = str(bati) + str(y)
 
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while dogu < 8:
         dogu = dogu + 1
         kare = str(dogu) + str(y)
 
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while kuzey > 1:
@@ -286,23 +317,23 @@ def vezir_f(x,y):
         kuzey = kuzey - 1
         kare = str(x) + str(kuzey)
 
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while guney < 8:
         guney = guney + 1
         kare = str(x) + str(guney)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     sag_alt_x = x
@@ -321,48 +352,48 @@ def vezir_f(x,y):
         sag_alt_x = sag_alt_x + 1
         sag_alt_y = sag_alt_y + 1
         kare = str(sag_alt_x) + str(sag_alt_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while sag_ust_x < 8 and sag_ust_y > 1:
         sag_ust_x = sag_ust_x + 1
         sag_ust_y = sag_ust_y - 1
         kare = str(sag_ust_x) + str(sag_ust_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while sol_alt_x > 1 and sol_alt_y < 8:
         sol_alt_x = sol_alt_x - 1
         sol_alt_y = sol_alt_y + 1
         kare = str(sol_alt_x) + str(sol_alt_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
     while sol_ust_x > 1 and sol_ust_y > 1:
         sol_ust_x = sol_ust_x - 1
         sol_ust_y = sol_ust_y - 1
         kare = str(sol_ust_x) + str(sol_ust_y)
-        if masa[kare] in dost.values():
+        if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
 
-        if masa[kare] in dusman.values():
+        if masa[kare] in du.values():
             break
 
 
@@ -371,7 +402,13 @@ def vezir_f(x,y):
 
     return secenekler
 
-def sah_f(x,y):
+def sah_f(x,y,taraf):
+    if taraf:
+        do = dost
+
+    else:
+        do = dusman
+
     x = int(x)
     y = int(y)
     secenekler = [str(x) + str(y - 1), str(x) + str(y + 1), str(x - 1) + str(y), str(x + 1) + str(y), str(x + 1) + str(y + 1), str(x + 1) + str(y - 1), str(x - 1) + str(y - 1), str(x - 1) + str(y + 1)]
@@ -385,7 +422,7 @@ def sah_f(x,y):
             black_list.append(i)
         else:
 
-            if masa[i] in dost.values() :
+            if masa[i] in do.values() :
 
                 black_list.append(i)
 
@@ -413,7 +450,7 @@ def planlama_dost(masa,layer):
 
         if masa[i] == dost["kale"]:
 
-            liste = kale_f(x, y)
+            liste = kale_f(x, y,True)
 
 
             for j in liste:
@@ -432,7 +469,7 @@ def planlama_dost(masa,layer):
         if masa[i] == dost["fil"]:
 
 
-            liste = fil_f(x, y)
+            liste = fil_f(x, y,True)
 
             for j in liste:
                 m = masa.copy()
@@ -447,7 +484,7 @@ def planlama_dost(masa,layer):
         if masa[i] == dost["at"]:
 
 
-            liste = at_f(x, y)
+            liste = at_f(x, y,True)
 
             for j in liste:
                 m = masa.copy()
@@ -475,7 +512,7 @@ def planlama_dost(masa,layer):
                 order = order + 1
 
         if masa[i] == dost["vezir"]:
-            liste = vezir_f(x, y)
+            liste = vezir_f(x, y,True)
 
             for j in liste:
                 m = masa.copy()
@@ -491,7 +528,7 @@ def planlama_dost(masa,layer):
 
         if masa[i] == dost["sah"]:
 
-            liste = sah_f(x, y)
+            liste = sah_f(x, y,True)
 
             for j in liste:
                 m = masa.copy()
@@ -519,7 +556,7 @@ def planlama_dusman(masa,layer):
 
         if masa[i] == dusman["kale"]:
 
-            liste = kale_f(x, y)
+            liste = kale_f(x, y,False)
 
 
             for j in liste:
@@ -538,7 +575,7 @@ def planlama_dusman(masa,layer):
         if masa[i] == dusman["fil"]:
 
 
-            liste = fil_f(x, y)
+            liste = fil_f(x, y,False)
 
             for j in liste:
                 m = masa.copy()
@@ -553,7 +590,7 @@ def planlama_dusman(masa,layer):
         if masa[i] == dusman["at"]:
 
 
-            liste = at_f(x, y)
+            liste = at_f(x, y,False)
 
             for j in liste:
                 m = masa.copy()
@@ -581,7 +618,7 @@ def planlama_dusman(masa,layer):
                 order = order + 1
 
         if masa[i] == dusman["vezir"]:
-            liste = vezir_f(x, y)
+            liste = vezir_f(x, y,False)
 
             for j in liste:
                 m = masa.copy()
@@ -597,7 +634,7 @@ def planlama_dusman(masa,layer):
 
         if masa[i] == dusman["sah"]:
 
-            liste = sah_f(x, y)
+            liste = sah_f(x, y,False)
 
             for j in liste:
                 m = masa.copy()
