@@ -1003,5 +1003,5 @@ if __name__ == '__main__':
     x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt","r")
     f = x.read()
     #f = dost["sah"]  + "----"+ dusman["sah"]
-
+    x.close()
     main(f)
