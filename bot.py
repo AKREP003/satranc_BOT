@@ -1,5 +1,7 @@
 import random
 import threading
+import time
+from queue import Queue as que
 dost = {"piyon" : "a",
 "kale" : "b",
 "at" : "c",
@@ -437,13 +439,15 @@ def sah_f(x,y,taraf):
 
 def planlama_dost(masa,layer):
 
-    order = 1
 
+
+    qu = que()
+    qu.put(1)
     elementler = []
 
     def kal(x, y, i):
         if masa[i] == dost["kale"]:
-            nonlocal order
+
             liste = kale_f(x, y, True)
 
             for j in liste:
@@ -451,14 +455,16 @@ def planlama_dost(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["kale"]
-
+                order = qu.get()
                 move = [f"{layer}-{order}", True, m, f"kale>{j}"]
                 elementler.append(move)
-                order =+ 1
+
+
+                qu.put(order+ 1)
 
     def fi(x, y, i):
         if masa[i] == dost["fil"]:
-            nonlocal order
+            global order
             liste = fil_f(x, y, True)
 
             for j in liste:
@@ -466,14 +472,14 @@ def planlama_dost(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["fil"]
-
+                order = qu.get()
                 move = [f"{layer}-{order}", True, m, f"fil>{j}"]
                 elementler.append(move)
-                order =+ 1
+                qu.put(order + 1)
 
     def att(x, y, i):
         if masa[i] == dost["at"]:
-            nonlocal order
+
             liste = at_f(x, y, True)
 
             for j in liste:
@@ -481,15 +487,17 @@ def planlama_dost(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["at"]
-
+                order = qu.get()
                 move = [f"{layer}-{order}", True, m, f"at>{j}"]
                 elementler.append(move)
-                order =+ 1
+
+                qu.put(order + 1)
+
 
     def piyo(x, y, i):
 
         if masa[i] == dost["piyon"]:
-            nonlocal order
+
             liste = piyon_f(x, y, True)
 
             for j in liste:
@@ -497,14 +505,15 @@ def planlama_dost(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["piyon"]
-
+                order = qu.get()
                 move = [f"{layer}-{order}", True, m, f"piyon>{j}"]
                 elementler.append(move)
-                order =+ 1
+
+                qu.put(order + 1)
 
     def vez(x, y, i):
         if masa[i] == dost["vezir"]:
-            nonlocal order
+            global order
             liste = vezir_f(x, y, True)
 
             for j in liste:
@@ -512,14 +521,14 @@ def planlama_dost(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["vezir"]
-
+                order = qu.get()
                 move = [f"{layer}-{order}", True, m, f"vezir>{j}"]
                 elementler.append(move)
-                order =+ 1
+                qu.put(order + 1)
 
     def sa(x, y, i):
         if masa[i] == dost["sah"]:
-            nonlocal order
+            global order
             liste = sah_f(x, y, True)
 
             for j in liste:
@@ -527,10 +536,10 @@ def planlama_dost(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["sah"]
-
+                order = qu.get()
                 move = [f"{layer}-{order}", True, m, f"sah>{j}"]
                 elementler.append(move)
-                order =+ 1
+                qu.put(order + 1)
     for i in masa.keys():
 
         x = i[0]
@@ -567,13 +576,14 @@ def planlama_dost(masa,layer):
     return elementler
 
 def planlama_dusman(masa,layer):
-    order = 1
+    qu = que()
+    qu.put(1)
 
     elementler = []
 
     def kal(x, y, i):
         if masa[i] == dusman["kale"]:
-            nonlocal order
+            global order
             liste = kale_f(x, y, False)
 
             for j in liste:
@@ -581,14 +591,14 @@ def planlama_dusman(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["kale"]
-
+                order = qu.get()
                 move = [f"{layer}-d{order}", False, m, f"d_kale>{j}"]
                 elementler.append(move)
-                order = order + 1
+                qu.put(order + 1)
 
     def fi(x, y, i):
         if masa[i] == dusman["fil"]:
-            nonlocal order
+            global order
             liste = fil_f(x, y, False)
 
             for j in liste:
@@ -596,14 +606,15 @@ def planlama_dusman(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["fil"]
-
+                order = qu.get()
                 move = [f"{layer}-d{order}", False, m, f"d_fil>{j}"]
                 elementler.append(move)
-                order = order + 1
+                qu.put(order + 1)
+
 
     def att(x, y, i):
         if masa[i] == dusman["at"]:
-            nonlocal order
+            global order
             liste = at_f(x, y, False)
 
             for j in liste:
@@ -611,14 +622,15 @@ def planlama_dusman(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["at"]
-
+                order = qu.get()
                 move = [f"{layer}-d{order}", False, m, f"d_at>{j}"]
                 elementler.append(move)
-                order = order + 1
+                qu.put(order + 1)
+
 
     def piyo(x, y, i):
         if masa[i] == dusman["piyon"]:
-            nonlocal order
+            global order
             liste = piyon_f(x, y, False)
 
             for j in liste:
@@ -626,14 +638,14 @@ def planlama_dusman(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["piyon"]
-
+                order = qu.get()
                 move = [f"{layer}-d{order}", False, m, f"d_piyon>{j}"]
                 elementler.append(move)
-                order = order + 1
+                qu.put(order + 1)
 
     def vez(x, y, i):
         if masa[i] == dusman["vezir"]:
-            nonlocal order
+            global order
             liste = vezir_f(x, y, False)
 
             for j in liste:
@@ -641,14 +653,14 @@ def planlama_dusman(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["vezir"]
-
+                order = qu.get()
                 move = [f"{layer}-d{order}", False, m, f"d_vezir>{j}"]
                 elementler.append(move)
-                order = order + 1
+                qu.put(order + 1)
 
     def sa(x, y, i):
         if masa[i] == dusman["sah"]:
-            nonlocal order
+            global order
             liste = sah_f(x, y, False)
 
             for j in liste:
@@ -656,10 +668,10 @@ def planlama_dusman(masa,layer):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["sah"]
-
+                order = qu.get()
                 move = [f"{layer}-d{order}", False, m, f"d_sah>{j}"]
                 elementler.append(move)
-                order = order + 1
+                qu.put(order + 1)
 
 
     for i in masa.keys():
@@ -734,6 +746,7 @@ def main(pozisyonlar):
     x = planlama_dost(masa,1)
 
 
+
     alfa = []
 
     alfa.append(["1","","","",len(x)])
@@ -806,6 +819,7 @@ def main(pozisyonlar):
 
     print(masa)
     loop = int(input("layer number: "))
+
 
     for que in range(loop):
 
