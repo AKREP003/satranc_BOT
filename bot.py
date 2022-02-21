@@ -1,6 +1,5 @@
 import random
 import threading
-import time
 from queue import Queue as que
 dost = {"piyon" : "a",
 "kale" : "b",
