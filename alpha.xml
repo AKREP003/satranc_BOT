@@ -1,0 +1,8 @@
+<alpha>
+
+    <counter_move id="a" child_ids="1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20" checked="1">
+
+
+    <move id="a-1" order="1" move="piyon-16" checked="0" child_ids="" /><move id="a-2" order="2" move="piyon-15" checked="0" child_ids="" /><move id="a-3" order="3" move="piyon-26" checked="0" child_ids="" /><move id="a-4" order="4" move="piyon-25" checked="0" child_ids="" /><move id="a-5" order="5" move="piyon-36" checked="0" child_ids="" /><move id="a-6" order="6" move="piyon-35" checked="0" child_ids="" /><move id="a-7" order="7" move="piyon-46" checked="0" child_ids="" /><move id="a-8" order="8" move="piyon-45" checked="0" child_ids="" /><move id="a-9" order="9" move="piyon-56" checked="0" child_ids="" /><move id="a-10" order="10" move="piyon-55" checked="0" child_ids="" /><move id="a-11" order="11" move="piyon-66" checked="0" child_ids="" /><move id="a-12" order="12" move="piyon-65" checked="0" child_ids="" /><move id="a-13" order="13" move="piyon-76" checked="0" child_ids="" /><move id="a-14" order="14" move="piyon-75" checked="0" child_ids="" /><move id="a-15" order="15" move="piyon-86" checked="0" child_ids="" /><move id="a-16" order="16" move="piyon-85" checked="0" child_ids="" /><move id="a-17" order="17" move="at-36" checked="0" child_ids="" /><move id="a-18" order="18" move="at-16" checked="0" child_ids="" /><move id="a-19" order="19" move="at-86" checked="0" child_ids="" /><move id="a-20" order="20" move="at-66" checked="0" child_ids="" /></counter_move>
+
+</alpha>

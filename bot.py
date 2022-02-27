@@ -1,26 +1,27 @@
 import random
 
-dost = {"piyon" : "a",
-"kale" : "b",
-"at" : "c",
-"fil" : "d",
-"vezir" : "e",
-"sah" : "f"}
+dost = {"piyon": "a",
+        "kale": "b",
+        "at": "c",
+        "fil": "d",
+        "vezir": "e",
+        "sah": "f"}
 
-dusman = {"piyon" : "g",
-"kale" : "h",
-"at" : "i",
-"fil" : "j",
-"vezir" : "k",
-"sah" : "l"}
+dusman = {"piyon": "g",
+          "kale": "h",
+          "at": "i",
+          "fil": "j",
+          "vezir": "k",
+          "sah": "l"}
+
 
 def Convert(string):
-    list1=[]
-    list1[:0]=string
+    list1 = []
+    list1[:0] = string
     return list1
 
-def kale_f(x,y,taraf):
 
+def kale_f(x, y, taraf):
     if taraf:
         do = dost
         du = dusman
@@ -46,10 +47,8 @@ def kale_f(x,y,taraf):
 
         secenekler.append(kare)
 
-
         if masa[kare] in du.values():
             break
-
 
     while dogu < 8:
         dogu = dogu + 1
@@ -73,14 +72,12 @@ def kale_f(x,y,taraf):
 
         secenekler.append(kare)
 
-
         if masa[kare] in du.values():
             break
 
-
     while guney < 8:
         guney = guney + 1
-        kare =   str(x) + str(guney)
+        kare = str(x) + str(guney)
         if masa[kare] in do.values():
             break
 
@@ -89,21 +86,16 @@ def kale_f(x,y,taraf):
         if masa[kare] in du.values():
             break
 
-
-
-
     return secenekler
 
-def fil_f(x,y,taraf):
 
+def fil_f(x, y, taraf):
     if taraf:
         do = dost
         du = dusman
     else:
         do = dusman
         du = dost
-
-
 
     secenekler = []
 
@@ -125,12 +117,11 @@ def fil_f(x,y,taraf):
     while sag_alt_x < 8 and sag_alt_y < 8:
         sag_alt_x = sag_alt_x + 1
         sag_alt_y = sag_alt_y + 1
-        kare = str(sag_alt_x)+str(sag_alt_y)
+        kare = str(sag_alt_x) + str(sag_alt_y)
         if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
-
 
         if masa[kare] in du.values():
             break
@@ -138,12 +129,11 @@ def fil_f(x,y,taraf):
     while sag_ust_x < 8 and sag_ust_y > 1:
         sag_ust_x = sag_ust_x + 1
         sag_ust_y = sag_ust_y - 1
-        kare = str(sag_ust_x)+str(sag_ust_y)
+        kare = str(sag_ust_x) + str(sag_ust_y)
         if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
-
 
         if masa[kare] in du.values():
             break
@@ -151,12 +141,11 @@ def fil_f(x,y,taraf):
     while sol_alt_x > 1 and sol_alt_y < 8:
         sol_alt_x = sol_alt_x - 1
         sol_alt_y = sol_alt_y + 1
-        kare = str(sol_alt_x)+str(sol_alt_y)
+        kare = str(sol_alt_x) + str(sol_alt_y)
         if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
-
 
         if masa[kare] in du.values():
             break
@@ -164,19 +153,19 @@ def fil_f(x,y,taraf):
     while sol_ust_x > 1 and sol_ust_y > 1:
         sol_ust_x = sol_ust_x - 1
         sol_ust_y = sol_ust_y - 1
-        kare = str(sol_ust_x)+str(sol_ust_y)
+        kare = str(sol_ust_x) + str(sol_ust_y)
         if masa[kare] in do.values():
             break
 
         secenekler.append(kare)
-
 
         if masa[kare] in du.values():
             break
 
     return secenekler
 
-def at_f(x,y,taraf):
+
+def at_f(x, y, taraf):
     if taraf:
         do = dost
 
@@ -212,10 +201,8 @@ def at_f(x,y,taraf):
             f.append(i)
         else:
 
-            if masa[i] in do.values() :
-
+            if masa[i] in do.values():
                 f.append(i)
-
 
     for i in f:
         try:
@@ -225,7 +212,8 @@ def at_f(x,y,taraf):
             pass
     return liste
 
-def piyon_f(x,y,taraf):
+
+def piyon_f(x, y, taraf):
     secenekler = []
     x = int(x)
     y = int(y)
@@ -246,7 +234,6 @@ def piyon_f(x,y,taraf):
             if i in masa.keys():
 
                 if masa[i] in dusman.values():
-
                     secenekler.append(i)
 
 
@@ -269,7 +256,8 @@ def piyon_f(x,y,taraf):
 
     return secenekler
 
-def vezir_f(x,y,taraf):
+
+def vezir_f(x, y, taraf):
     if taraf:
         do = dost
         du = dusman
@@ -396,13 +384,10 @@ def vezir_f(x,y,taraf):
         if masa[kare] in du.values():
             break
 
-
-
-
-
     return secenekler
 
-def sah_f(x,y,taraf):
+
+def sah_f(x, y, taraf):
     if taraf:
         do = dost
 
@@ -411,10 +396,10 @@ def sah_f(x,y,taraf):
 
     x = int(x)
     y = int(y)
-    secenekler = [str(x) + str(y - 1), str(x) + str(y + 1), str(x - 1) + str(y), str(x + 1) + str(y), str(x + 1) + str(y + 1), str(x + 1) + str(y - 1), str(x - 1) + str(y - 1), str(x - 1) + str(y + 1)]
+    secenekler = [str(x) + str(y - 1), str(x) + str(y + 1), str(x - 1) + str(y), str(x + 1) + str(y),
+                  str(x + 1) + str(y + 1), str(x + 1) + str(y - 1), str(x - 1) + str(y - 1), str(x - 1) + str(y + 1)]
 
     black_list = []
-
 
     for i in secenekler:
 
@@ -422,8 +407,7 @@ def sah_f(x,y,taraf):
             black_list.append(i)
         else:
 
-            if masa[i] in do.values() :
-
+            if masa[i] in do.values():
                 black_list.append(i)
 
     for i in black_list:
@@ -435,8 +419,8 @@ def sah_f(x,y,taraf):
 
     return secenekler
 
-def planlama_dost(masa,layer):
 
+def planlama_dost(masa, layer):
     order = 1
 
     elementler = []
@@ -446,30 +430,23 @@ def planlama_dost(masa,layer):
         x = i[0]
         y = i[1]
 
-
-
         if masa[i] == dost["kale"]:
 
-            liste = kale_f(x, y,True)
-
+            liste = kale_f(x, y, True)
 
             for j in liste:
-
                 m = masa.copy()
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["kale"]
 
-                move = [f"{layer}-{order}",True,m,f"kale>{j}"]
+                move = [f"{layer}-{order}", True, m, f"kale>{j}"]
                 elementler.append(move)
                 order = order + 1
 
-
-
         if masa[i] == dost["fil"]:
 
-
-            liste = fil_f(x, y,True)
+            liste = fil_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -483,8 +460,7 @@ def planlama_dost(masa,layer):
 
         if masa[i] == dost["at"]:
 
-
-            liste = at_f(x, y,True)
+            liste = at_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -497,7 +473,6 @@ def planlama_dost(masa,layer):
                 order = order + 1
 
         if masa[i] == dost["piyon"]:
-
 
             liste = piyon_f(x, y, True)
 
@@ -512,7 +487,7 @@ def planlama_dost(masa,layer):
                 order = order + 1
 
         if masa[i] == dost["vezir"]:
-            liste = vezir_f(x, y,True)
+            liste = vezir_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -524,11 +499,9 @@ def planlama_dost(masa,layer):
                 elementler.append(move)
                 order = order + 1
 
-
-
         if masa[i] == dost["sah"]:
 
-            liste = sah_f(x, y,True)
+            liste = sah_f(x, y, True)
 
             for j in liste:
                 m = masa.copy()
@@ -542,7 +515,8 @@ def planlama_dost(masa,layer):
 
     return elementler
 
-def planlama_dusman(masa,layer):
+
+def planlama_dusman(masa, layer):
     order = 1
 
     elementler = []
@@ -552,30 +526,23 @@ def planlama_dusman(masa,layer):
         x = i[0]
         y = i[1]
 
-
-
         if masa[i] == dusman["kale"]:
 
-            liste = kale_f(x, y,False)
-
+            liste = kale_f(x, y, False)
 
             for j in liste:
-
                 m = masa.copy()
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["kale"]
 
-                move = [f"{layer}-d{order}",False,m,f"d_kale>{j}"]
+                move = [f"{layer}-d{order}", False, m, f"d_kale>{j}"]
                 elementler.append(move)
                 order = order + 1
 
-
-
         if masa[i] == dusman["fil"]:
 
-
-            liste = fil_f(x, y,False)
+            liste = fil_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -589,8 +556,7 @@ def planlama_dusman(masa,layer):
 
         if masa[i] == dusman["at"]:
 
-
-            liste = at_f(x, y,False)
+            liste = at_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -603,7 +569,6 @@ def planlama_dusman(masa,layer):
                 order = order + 1
 
         if masa[i] == dusman["piyon"]:
-
 
             liste = piyon_f(x, y, False)
 
@@ -618,7 +583,7 @@ def planlama_dusman(masa,layer):
                 order = order + 1
 
         if masa[i] == dusman["vezir"]:
-            liste = vezir_f(x, y,False)
+            liste = vezir_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -630,11 +595,9 @@ def planlama_dusman(masa,layer):
                 elementler.append(move)
                 order = order + 1
 
-
-
         if masa[i] == dusman["sah"]:
 
-            liste = sah_f(x, y,False)
+            liste = sah_f(x, y, False)
 
             for j in liste:
                 m = masa.copy()
@@ -648,18 +611,20 @@ def planlama_dusman(masa,layer):
 
     return elementler
 
+
 def new_hamle_dost(z):
     x = planlama_dost(z[2], z[0])
 
     return x
+
 
 def new_hamle_dusman(z):
     x = planlama_dusman(z[2], z[0])
 
     return x
 
-def main(pozisyonlar):
 
+def main(pozisyonlar):
     print("started")
 
     global masa
@@ -667,34 +632,27 @@ def main(pozisyonlar):
     masa = {}
 
     for i in range(8):
-        for j in range(8): #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            masa[str(j + 1)+ str(i + 1) ] = ""
+        for j in range(8):  # aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            masa[str(j + 1) + str(i + 1)] = ""
 
     pozisyonlar_ = Convert(pozisyonlar)
-    pozisyonlar_ =  [q for q in pozisyonlar_ if q != "\n"]
+    pozisyonlar_ = [q for q in pozisyonlar_ if q != "\n"]
     for i in range(len(pozisyonlar_)):
         p = pozisyonlar_[i]
 
-
         masa[list(masa.keys())[i]] = p
 
-
+    print(masa)
 
     print("the progress has begun")
 
-
-
-    x = planlama_dost(masa,1)
-
+    x = planlama_dost(masa, 1)
 
     alfa = []
 
-    alfa.append(["1","","","",len(x)])
-
-
+    alfa.append(["1", "", "", "", len(x)])
 
     y = []
-
 
     def won(x):
         if dusman["sah"] not in list(x[2].values()):
@@ -709,29 +667,16 @@ def main(pozisyonlar):
 
             y.append(x)
 
-
-
     for i in x:
-
         won(i)
 
-
-
-
-    def ayikla(x,po):
-
-
+    def ayikla(x, po):
 
         ayik = []
 
-
-
         for i in range(len(alfa)):
 
-
             if alfa[i][0] == x:
-
-
 
                 ay = alfa[i][0].split("-")[:-2]
 
@@ -742,19 +687,13 @@ def main(pozisyonlar):
 
                 spl = spl[1:]
 
-
                 for j in alfa:
                     if j[0] == spl:
-
-
                         j[4] = po
-
 
                 ayik.append(i)
 
         for i in ayik:
-
-
             del alfa[i]
 
     print(masa)
@@ -764,10 +703,7 @@ def main(pozisyonlar):
 
         z = None
 
-
         for i in y:
-
-
 
             y = [q for q in y if q != i]
 
@@ -777,37 +713,27 @@ def main(pozisyonlar):
 
             for w in n:
 
-
-
                 alfa.append(w)
                 z = True
 
                 if dost["sah"] not in list(w[2].values()):
-
-
 
                     sp = w[0].split("-")[:-1]
 
                     spl = ""
 
                     for s in sp:
-
                         spl = spl + "-" + s
-
-
 
                     yalnis = spl[1:]
 
                     t = new_hamle_dost(w)
                     po = len(t)
 
-
-
-                    ayikla(yalnis,po)
+                    ayikla(yalnis, po)
 
                     z = False
                     break
-
 
             if z:
                 pos = None
@@ -816,16 +742,12 @@ def main(pozisyonlar):
                     t = new_hamle_dost(w)
                     pos = len(t)
 
-
-
                     for j in t:
-
                         won(j)
 
                 i.append(pos)
 
                 i.append(d_len)
-
 
     while 1:
 
@@ -837,10 +759,8 @@ def main(pozisyonlar):
                 if type(i) != str:
 
                     if len(i) > 4 and i[4] < 1:
-
                         wan.append(i)
                         per = True
-
 
         if per:
 
@@ -857,53 +777,38 @@ def main(pozisyonlar):
 
                 ayikla(i[0], i[4] - 1)
 
-                ayikla(yalnis,i[4] - 1)
+                ayikla(yalnis, i[4] - 1)
 
         else:
             break
 
-
     print("finished")
 
-
-
-    def next_f(x,y):
+    def next_f(x, y):
         next_play = random.randint(1, y)
         cor = f"{x}-{next_play}"
         return cor
 
-
-
-
-
-
-
     def second_move(x):
 
-
-
         posib_c = []
-
-
 
         if len(x) > 4:
             for i in range(x[5]):
 
                 for j in alfa:
 
-                    if not j[1] and j[0] == x[0]+"-d" + str(i + 1):
+                    if not j[1] and j[0] == x[0] + "-d" + str(i + 1):
                         posib_c.append(j)
-
 
             for i in posib_c:
                 print(i[3])
 
             want = next_f(posib_c[int(input("")) - 1][0], x[4])
 
-
+            print(alfa)
 
             for i in alfa:
-
 
                 if type(i) == str:
 
@@ -916,32 +821,25 @@ def main(pozisyonlar):
                     print("do it: " + str(i[3]))
                     return i
 
-
-
-
     if alfa[0][0] == "1":
         gama = alfa[0]
 
-
         for i in alfa:
-            if i[0] == next_f("1",gama[4]):
-
+            if i[0] == next_f("1", gama[4]):
 
                 first_move = i
-                print( "do it: "+ str(i[3]))
+                print("do it: " + str(i[3]))
 
                 for j in range(loop + 1):
-
                     first_move = second_move(first_move)
 
     else:
         print("there is nothing you can do bitch")
 
+
 if __name__ == '__main__':
-
-
-    x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt","r")
+    x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt", "r")
     f = x.read()
-    #f = dost["sah"]  + "----"+ dusman["sah"]
+    # f = dost["sah"]  + "----"+ dusman["sah"]
     x.close()
     main(f)
