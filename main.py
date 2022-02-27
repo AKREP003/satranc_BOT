@@ -257,6 +257,8 @@ def unchecked_move():
         i.attrib["checked"] = '1'
         i.attrib["child_ids"] = i.attrib["child_ids"][1:]
 
+
+
 def unchecked_counter_move():
     y = alpha.getroot().findall(".//move[@checked='0']")
 
@@ -279,6 +281,11 @@ def unchecked_counter_move():
         i.attrib["checked"] = '1'
         i.attrib["child_ids"] = i.attrib["child_ids"][1:]
 
+    while 1:
+        if not ayikla():
+            break
+
+
 def ayikla():
     retur = False
 
@@ -290,7 +297,7 @@ def ayikla():
         for j in i:
             t[j.attrib["location"]] = str(j.text)
 
-        if dost["sah"] not in t.keys():
+        if dost["sah"] not in t.values():
 
             alp = alpha.findall("//move[@id='{}']".format(i.attrib["id"]))[0]
 
@@ -328,7 +335,7 @@ masa_add("a",return_masa(f))
 
 unchecked_move()
 
-ayikla()
+unchecked_counter_move()
 
 
 alpha.write('alpha.xml')
