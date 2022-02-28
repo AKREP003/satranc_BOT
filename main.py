@@ -53,10 +53,12 @@ def masa_add(id,mas):
         y.text = mas[i]
 
 def alpha_add(ancestor,m,name,order,j,taraf):
-    x = ET.SubElement(ancestor, "move")
+    print(taraf)
     if taraf:
+        x = ET.SubElement(ancestor, "move")
         id = ancestor.attrib["id"] + "-" + str(order)
     else:
+        x = ET.SubElement(ancestor, "counter_move")
         id = ancestor.attrib["id"] + "-" + str(order) + "b"
 
     x.attrib["id"] = id
@@ -276,14 +278,14 @@ def unchecked_counter_move():
 
 
 
-        planlama_dost(t, i)
+        planlama_dusman(t, i)
 
         i.attrib["checked"] = '1'
         i.attrib["child_ids"] = i.attrib["child_ids"][1:]
 
-    while 1:
+    """while 1:
         if not ayikla():
-            break
+            break"""
 
 
 def ayikla():
@@ -299,7 +301,7 @@ def ayikla():
 
         if dost["sah"] not in t.values():
 
-            alp = alpha.findall("//move[@id='{}']".format(i.attrib["id"]))[0]
+            alp = alpha.find(".//counter_move[@id='{}']".format(i.attrib["id"]))
 
             anc_id_list = i.attrib["id"].split("-")[:1]
             anc_id = ""
@@ -336,7 +338,7 @@ masa_add("a",return_masa(f))
 unchecked_move()
 
 unchecked_counter_move()
-
+#ayikla()
 
 alpha.write('alpha.xml')
 masas.write('masas.xml')
