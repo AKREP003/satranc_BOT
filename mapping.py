@@ -252,11 +252,7 @@ class map:
                 if i in masa.keys():
                     if masa[i] in dost.values():
                         secenekler.append(i)
-        print(masa)
-        print(taraf)
-        print(x,y)
-        print(secenekler)
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
         return secenekler
 
     def vezir_f(self,x, y, taraf):
