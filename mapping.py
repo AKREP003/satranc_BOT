@@ -224,7 +224,7 @@ class map:
                 secenekler.append(kare)
 
                 kare = str(x) + str(y - 2)
-                if masa[kare] not in dusman.values() and masa[kare] not in dost.values() and y == 7:
+                if (kare in masa.keys()) and (masa[kare] not in dusman.values()) and (masa[kare] not in dost.values()) and y == 7:
                     secenekler.append(kare)
 
             kare = [str(x + 1) + str(y - 1), str(x - 1) + str(y - 1)]
@@ -238,12 +238,12 @@ class map:
 
         else:
             kare = str(x) + str(y + 1)
-
-            if (kare in masa.keys()) and masa[kare] not in dost.values() and masa[kare] not in dusman.values():
+            
+            if (kare in masa.keys()) and (masa[kare] not in dost.values()) and masa[kare] not in dusman.values():
                 secenekler.append(kare)
                 kare = str(x) + str(y + 2)
 
-                if (masa[kare] not in dost.values()) and (masa[kare] not in dusman.values()) and y == 2:
+                if (kare in masa.keys()) and (masa[kare] not in dost.values()) and (masa[kare] not in dusman.values()) and y == 2:
                     secenekler.append(kare)
 
             kare = [str(x + 1) + str(y + 1), str(x - 1) + str(y + 1)]
@@ -252,7 +252,11 @@ class map:
                 if i in masa.keys():
                     if masa[i] in dost.values():
                         secenekler.append(i)
-
+        print(masa)
+        print(taraf)
+        print(x,y)
+        print(secenekler)
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         return secenekler
 
     def vezir_f(self,x, y, taraf):
