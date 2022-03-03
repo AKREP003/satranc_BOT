@@ -1,7 +1,7 @@
 <alpha>
 
-    <counter_move id="a" child_ids="" checked="0">
-
+    <counter_move id="a" child_ids="" checked="0" child_id="">
 
     </counter_move>
+
 </alpha>
