@@ -292,6 +292,49 @@ def unchecked_counter_move():
 
 
 def ayikla():
+
+    def delet(ii):
+
+        id = ""
+        for d in i.attrib["id"].split("-")[:-1]:
+            id += d + "-"
+
+        alp = alpha.find(".//move[@id='{}']".format(id[:-1]))
+
+        anc_id_list = alp.attrib["id"].split("-")[:-1]
+
+        anc_id = ""
+        for d in anc_id_list:
+            anc_id += d + "-"
+
+        anc = alpha.find(".//counter_move[@id='{}']".format(anc_id[:-1]))
+
+        anc_child_id = anc.attrib["child_ids"].split("-")
+
+        anc_child_id = [q for q in anc_child_id if q != alp.attrib["order"]]
+
+        new_anc_child_id = ""
+
+        for d in anc_child_id:
+            new_anc_child_id += d + "-"
+
+        anc.attrib["child_ids"] = new_anc_child_id[:-1]
+
+        masas.getroot().remove(masas.find(".//masa[@id='{}']".format(alp.attrib["id"])))
+
+        for b in alp.attrib["child_ids"].split("-"):
+
+            xxx = alp.attrib["id"] + "-" + b + "b"
+            xx = masas.find(".//masa[@id='{}']".format(xxx))
+            if xx != None:
+                masas.getroot().remove(xx)
+
+        if len(anc.attrib["child_ids"].split("-")) == 0:
+            delet(anc)
+
+
+
+
     retur = False
 
     x = masas.findall(".//masa")
@@ -303,45 +346,8 @@ def ayikla():
             t[j.attrib["location"]] = str(j.text)
 
         if dost["sah"] not in list(t.values()):
+            delet(i)
 
-            id = ""
-            for d in i.attrib["id"].split("-")[:-1]:
-                id += d + "-"
-
-
-            alp = alpha.find(".//move[@id='{}']".format(id[:-1]))
-
-
-
-
-            anc_id_list = alp.attrib["id"].split("-")[:-1]
-
-            anc_id = ""
-            for d in anc_id_list:
-                anc_id += d + "-"
-
-            anc = alpha.find(".//counter_move[@id='{}']".format(anc_id[:-1]))
-
-            anc_child_id = anc.attrib["child_ids"].split("-")
-
-            anc_child_id =  [q for q in anc_child_id if q != alp.attrib["order"]]
-
-            new_anc_child_id = ""
-
-            for d in anc_child_id:
-                new_anc_child_id += d + "-"
-
-            anc.attrib["child_ids"] = new_anc_child_id[:-1]
-
-            masas.getroot().remove(masas.find(".//masa[@id='{}']".format(alp.attrib["id"])))
-
-            for b in alp.attrib["child_ids"].split("-"):
-
-                xxx = alp.attrib["id"] + "-" + b + "b"
-                xx = masas.find(".//masa[@id='{}']".format(xxx))
-                if xx != None:
-
-                    masas.getroot().remove(xx)
 
             retur = True
 
