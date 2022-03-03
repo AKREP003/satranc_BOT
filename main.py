@@ -296,7 +296,7 @@ def ayikla():
     def delet(ii):
 
         id = ""
-        for d in i.attrib["id"].split("-")[:-1]:
+        for d in ii.attrib["id"].split("-")[:-1]:
             id += d + "-"
 
         alp = alpha.find(".//move[@id='{}']".format(id[:-1]))
