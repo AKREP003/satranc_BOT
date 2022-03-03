@@ -303,30 +303,46 @@ def ayikla():
             t[j.attrib["location"]] = str(j.text)
 
         if dost["sah"] not in list(t.values()):
-            print(i.attrib)
-            print(list(t.values()))
-            alp = alpha.find(".//counter_move[@id='{}']".format(i.attrib["id"]))
 
-            anc_id_list = i.attrib["id"].split("-")
+            id = ""
+            for d in i.attrib["id"].split("-")[:-1]:
+                id += d + "-"
+
+
+            alp = alpha.find(".//move[@id='{}']".format(id[:-1]))
+
+
+
+
+            anc_id_list = alp.attrib["id"].split("-")[:-1]
 
             anc_id = ""
             for d in anc_id_list:
                 anc_id += d + "-"
 
-            anc = alpha.find("//move[@id='{}']".format(anc_id))
-            anc_child_id = anc.attrib["child_id"].split("-")
+            anc = alpha.find(".//counter_move[@id='{}']".format(anc_id[:-1]))
 
-            anc_child_id.remove(i.attrib["id"])
+            anc_child_id = anc.attrib["child_ids"].split("-")
+
+            anc_child_id =  [q for q in anc_child_id if q != alp.attrib["order"]]
 
             new_anc_child_id = ""
 
             for d in anc_child_id:
-                new_anc_child_id += d
+                new_anc_child_id += d + "-"
 
-            anc.attrib["child_id"] = new_anc_child_id
+            anc.attrib["child_ids"] = new_anc_child_id[:-1]
 
-            masas.getroot().remove(i)
-            alpha.getroot().remove(alp)
+            masas.getroot().remove(masas.find(".//masa[@id='{}']".format(alp.attrib["id"])))
+
+            for b in alp.attrib["child_ids"].split("-"):
+
+                xxx = alp.attrib["id"] + "-" + b + "b"
+                xx = masas.find(".//masa[@id='{}']".format(xxx))
+                if xx != None:
+
+                    masas.getroot().remove(xx)
+
             retur = True
 
     return retur
@@ -338,12 +354,12 @@ x.close()
 
 
 
-masa_add("a",return_masa(f))
+#masa_add("a",return_masa(f))
 
-unchecked_move()
+#unchecked_move()
 
-unchecked_counter_move()
-#ayikla()
+#unchecked_counter_move()
+ayikla()
 
 alpha.write('alpha.xml')
 masas.write('masas.xml')
