@@ -298,7 +298,9 @@ def ayikla():
         id = ""
         for d in ii.attrib["id"].split("-")[:-1]:
             id += d + "-"
-
+        if ii.attrib["id"] == "a":
+            print("there is nothing you can do bitch")
+            exit()
         alp = alpha.find(".//move[@id='{}']".format(id[:-1]))
 
         anc_id_list = alp.attrib["id"].split("-")[:-1]
@@ -329,7 +331,7 @@ def ayikla():
             if xx != None:
                 masas.getroot().remove(xx)
 
-        if len(anc.attrib["child_ids"].split("-")) == 0:
+        if len(anc.attrib["child_ids"].split("-")) == 1:
             delet(anc)
 
 
@@ -348,10 +350,38 @@ def ayikla():
         if dost["sah"] not in list(t.values()):
             delet(i)
 
-
             retur = True
 
+
+        if dusman["sah"] not in list(t.values()):
+
+
+
+            ln = i.attrib["id"].split("-")
+
+            for h in range(len(ln)):
+                delta = ln[:(len(ln) - h)]
+
+                if not len(delta) == 0:
+
+                    new_str = ""
+
+                    for yy in delta:
+                        new_str += yy + "-"
+
+                    new_str = new_str[:-1]
+
+                    gama = alpha.find(".//*[@id='{}']".format(new_str))
+                    gama.attrib["beta"] = str(h + 1)
+
+
+
     return retur
+
+
+
+
+
 
 x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt", "r")
 f = x.read()
@@ -360,12 +390,12 @@ x.close()
 
 
 
-#masa_add("a",return_masa(f))
+"""masa_add("a",return_masa(f))
 
-#unchecked_move()
+unchecked_move()
 
-#unchecked_counter_move()
-ayikla()
+unchecked_counter_move()"""
+#yikla()
 
 alpha.write('alpha.xml')
 masas.write('masas.xml')
