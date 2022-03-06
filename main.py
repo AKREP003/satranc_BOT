@@ -374,7 +374,7 @@ def ayikla():
                     gama = alpha.find(".//*[@id='{}']".format(new_str))
                     gama.attrib["beta"] = str(h + 1)
 
-
+                    retur = True
 
     return retur
 
