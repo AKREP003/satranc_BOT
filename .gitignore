@@ -5,10 +5,8 @@
 .idea/runConfigurations.xml
 .idea/modules.xml
 .idea/misc.xml
-masas.xml
-alpha.xml
 bot.py
 puzzle.txt
 __pycache__/mapping.cpython-39.pyc
-masas.xml
-*.xml
+
+
