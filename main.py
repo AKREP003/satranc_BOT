@@ -26,6 +26,10 @@ def Convert(string):
     list1[:0] = string
     return list1
 
+
+def biggest(a):
+    return max(enumerate(a), key=(lambda x: x[1]))
+
 def return_masa(pozisyonlar):
     masa = {}
 
@@ -378,10 +382,26 @@ def ayikla():
 
     return retur
 
+def find_closest(alp):
+    for i in alp:
+        if "beta" in i.attrib.keys():
+            x = int(i.attrib["beta"])
+            y = i
+            break
+
+
+    for i in alp:
+
+        if "beta" in i.attrib.keys():
+
+            if x > int(i.attrib["beta"]):
+                x = int(i.attrib["beta"])
+                y = i
+    return y
 
 
 
-
+    #print(alp[closest_path].attrib["move"])
 
 x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt", "r")
 f = x.read()
@@ -395,7 +415,9 @@ x.close()
 unchecked_move()
 
 unchecked_counter_move()"""
-#yikla()
+#ayikla()
+
+print(find_closest(alpha.findall("./*/move")).attrib)
 
 alpha.write('alpha.xml')
 masas.write('masas.xml')
