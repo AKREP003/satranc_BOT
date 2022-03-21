@@ -69,7 +69,7 @@ def alpha_add(ancestor,m,name,order,j,taraf):
         id = ancestor.attrib["id"] + "-" + str(order) + "b"
 
     x.attrib["id"] = id
-
+    x.attrib["beta"] = "unknown"
     x.attrib["order"] = str(order)
 
     x.attrib["move"] = name + "-" + j
@@ -382,22 +382,7 @@ def ayikla():
 
     return retur
 
-def find_closest(alp):
-    for i in alp:
-        if "beta" in i.attrib.keys():
-            x = int(i.attrib["beta"])
-            y = i
-            break
 
-
-    for i in alp:
-
-        if "beta" in i.attrib.keys():
-
-            if x > int(i.attrib["beta"]):
-                x = int(i.attrib["beta"])
-                y = i
-    return y
 
 
 
@@ -417,7 +402,6 @@ unchecked_move()
 unchecked_counter_move()"""
 #ayikla()
 
-print(find_closest(alpha.findall("./*/move")).attrib)
 
 alpha.write('alpha.xml')
 masas.write('masas.xml')
