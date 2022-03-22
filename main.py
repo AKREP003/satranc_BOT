@@ -1,7 +1,7 @@
-
-#dont ask mw wtf is going on, i dont know either!
+# don't ask mw wtf is going on, i don't know either!
 
 import mapping
+
 import xml.etree.cElementTree as ET
 
 dost = {"piyon": "a",
@@ -30,6 +30,7 @@ def Convert(string):
 def biggest(a):
     return max(enumerate(a), key=(lambda x: x[1]))
 
+
 def return_masa(pozisyonlar):
     masa = {}
 
@@ -45,22 +46,19 @@ def return_masa(pozisyonlar):
         masa[list(masa.keys())[i]] = p
     return masa
 
-def masa_add(id,mas):
-    x = ET.SubElement(masas.getroot(),"masa")
 
-
+def masa_add(id, mas):
+    x = ET.SubElement(masas.getroot(), "masa")
 
     x.attrib["id"] = id
 
-
     for i in mas.keys():
-        y = ET.SubElement(x,"value",attrib={"location":i})
-
+        y = ET.SubElement(x, "value", attrib={"location": i})
 
         y.text = mas[i]
 
-def alpha_add(ancestor,m,name,order,j,taraf):
 
+def alpha_add(ancestor, m, name, order, j, taraf):
     if taraf:
         x = ET.SubElement(ancestor, "move")
         id = ancestor.attrib["id"] + "-" + str(order)
@@ -77,6 +75,7 @@ def alpha_add(ancestor,m,name,order,j,taraf):
     x.attrib["child_ids"] = ""
     ancestor.attrib["child_ids"] = ancestor.attrib["child_ids"] + "-" + str(order)
     masa_add(id, m)
+
 
 def planlama_dost(masa, ancestor):
     mapper = mapping.map(masa)
@@ -98,7 +97,7 @@ def planlama_dost(masa, ancestor):
                 m[str(x) + str(y)] = ''
                 m[j] = dost["kale"]
 
-                alpha_add(ancestor,m,"kale",order,j,True)
+                alpha_add(ancestor, m, "kale", order, j, True)
 
                 order = order + 1
 
@@ -111,7 +110,7 @@ def planlama_dost(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["fil"]
-                alpha_add(ancestor, m, "fil", order, j,True)
+                alpha_add(ancestor, m, "fil", order, j, True)
                 order = order + 1
 
         if masa[i] == dost["at"]:
@@ -123,7 +122,7 @@ def planlama_dost(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["at"]
-                alpha_add(ancestor, m, "at", order, j,True)
+                alpha_add(ancestor, m, "at", order, j, True)
                 order = order + 1
 
         if masa[i] == dost["piyon"]:
@@ -135,7 +134,7 @@ def planlama_dost(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["piyon"]
-                alpha_add(ancestor, m, "piyon", order, j,True)
+                alpha_add(ancestor, m, "piyon", order, j, True)
                 order = order + 1
 
         if masa[i] == dost["vezir"]:
@@ -146,7 +145,7 @@ def planlama_dost(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["vezir"]
-                alpha_add(ancestor, m, "vezir", order, j,True)
+                alpha_add(ancestor, m, "vezir", order, j, True)
                 order = order + 1
 
         if masa[i] == dost["sah"]:
@@ -158,10 +157,13 @@ def planlama_dost(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dost["sah"]
-                alpha_add(ancestor, m, "sah", order, j,True)
+                alpha_add(ancestor, m, "sah", order, j, True)
                 order = order + 1
 
+
 def planlama_dusman(masa, ancestor):
+
+
     mapper = mapping.map(masa)
 
     order = 1
@@ -181,7 +183,7 @@ def planlama_dusman(masa, ancestor):
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["kale"]
 
-                alpha_add(ancestor,m,"kale",order,j,False)
+                alpha_add(ancestor, m, "kale", order, j, False)
 
                 order = order + 1
 
@@ -194,7 +196,7 @@ def planlama_dusman(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["fil"]
-                alpha_add(ancestor, m, "fil", order, j,False)
+                alpha_add(ancestor, m, "fil", order, j, False)
                 order = order + 1
 
         if masa[i] == dusman["at"]:
@@ -205,8 +207,8 @@ def planlama_dusman(masa, ancestor):
                 m = masa.copy()
 
                 m[str(x) + str(y)] = ''
-                m[j] =dusman["at"]
-                alpha_add(ancestor, m, "at", order, j,False)
+                m[j] = dusman["at"]
+                alpha_add(ancestor, m, "at", order, j, False)
                 order = order + 1
 
         if masa[i] == dusman["piyon"]:
@@ -218,7 +220,7 @@ def planlama_dusman(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["piyon"]
-                alpha_add(ancestor, m, "piyon", order, j,False)
+                alpha_add(ancestor, m, "piyon", order, j, False)
                 order = order + 1
 
         if masa[i] == dusman["vezir"]:
@@ -229,7 +231,7 @@ def planlama_dusman(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["vezir"]
-                alpha_add(ancestor, m, "vezir", order, j,False)
+                alpha_add(ancestor, m, "vezir", order, j, False)
                 order = order + 1
 
         if masa[i] == dusman["sah"]:
@@ -241,13 +243,12 @@ def planlama_dusman(masa, ancestor):
 
                 m[str(x) + str(y)] = ''
                 m[j] = dusman["sah"]
-                alpha_add(ancestor, m, "sah", order, j,False)
+                alpha_add(ancestor, m, "sah", order, j, False)
                 order = order + 1
+
 
 def unchecked_move():
     y = alpha.getroot().findall(".//counter_move[@checked='0']")
-
-
 
     for i in y:
         id = i.attrib["id"]
@@ -259,19 +260,14 @@ def unchecked_move():
         for j in x:
             t[j.attrib["location"]] = str(j.text)
 
-
-
         planlama_dost(t, i)
 
         i.attrib["checked"] = '1'
         i.attrib["child_ids"] = i.attrib["child_ids"][1:]
 
 
-
 def unchecked_counter_move():
     y = alpha.getroot().findall(".//move[@checked='0']")
-
-
 
     for i in y:
         id = i.attrib["id"]
@@ -282,8 +278,6 @@ def unchecked_counter_move():
 
         for j in x:
             t[j.attrib["location"]] = str(j.text)
-
-
 
         planlama_dusman(t, i)
 
@@ -296,7 +290,6 @@ def unchecked_counter_move():
 
 
 def ayikla():
-
     def delet(ii):
 
         id = ""
@@ -338,9 +331,6 @@ def ayikla():
         if len(anc.attrib["child_ids"].split("-")) == 1:
             delet(anc)
 
-
-
-
     retur = False
 
     x = masas.findall(".//masa")
@@ -356,10 +346,7 @@ def ayikla():
 
             retur = True
 
-
         if dusman["sah"] not in list(t.values()):
-
-
 
             ln = i.attrib["id"].split("-")
 
@@ -382,25 +369,40 @@ def ayikla():
 
     return retur
 
+    # print(alp[closest_path].attrib["move"])
 
 
+fff = alpha.getroot()[0]
 
+def find_closest(fr):
+    x = None
+    z = None
+    for i in fr:
+        y = i.attrib["beta"]
+        if y != "unknown":
+            y = int(y)
 
-    #print(alp[closest_path].attrib["move"])
+            if x == None or y > x:
+                x = y
+                z = i
+
+    
+
+    return z
+
+print(find_closest(find_closest(fff)).attrib)
 
 x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt", "r")
 f = x.read()
 # f = dost["sah"]  + "----"+ dusman["sah"]
 x.close()
 
-
-
 """masa_add("a",return_masa(f))
 
 unchecked_move()
 
 unchecked_counter_move()"""
-#ayikla()
+# ayikla()
 
 
 alpha.write('alpha.xml')
