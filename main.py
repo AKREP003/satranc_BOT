@@ -372,7 +372,7 @@ def ayikla():
     # print(alp[closest_path].attrib["move"])
 
 
-fff = alpha.getroot()[0]
+
 
 def find_closest(fr):
     x = None
@@ -386,22 +386,47 @@ def find_closest(fr):
                 x = y
                 z = i
 
-    
-
     return z
 
-print(find_closest(find_closest(fff)).attrib)
+def start():
+    fff = alpha.getroot()[0]
+
+    if fff.attrib["beta"] != "unknown":
+
+        possible_counters = []
+
+        hamle = find_closest(fff)
+
+        print("yap:" + hamle.attrib["move"])
+        order = 0
+        for i in hamle.attrib["child_ids"].split("-"):
+            id = hamle.attrib['id'] + '-' + i + "b"
+            order += 1
+            possible_counter = alpha.find(".//counter_move[@id='{}']".format(id))
+            print(str(order) + "/" + possible_counter.attrib["move"])
+            possible_counters.append(possible_counter)
+
+        counter = possible_counters[int(input("")) - 1]
+
+        
+
+
+
+
+
+start()
 
 x = open(r"C:\Users\aliek\Desktop\projeler\python\satranç_BOT\puzzle_2.txt", "r")
 f = x.read()
 # f = dost["sah"]  + "----"+ dusman["sah"]
 x.close()
 
-"""masa_add("a",return_masa(f))
+masa_add("a",return_masa(f))
 
-unchecked_move()
+"""unchecked_move()
 
-unchecked_counter_move()"""
+        unchecked_counter_move()"""
+
 # ayikla()
 
 
